@@ -7,11 +7,13 @@ public class N_15650 {
         int n = sc.nextInt();
         int m = sc.nextInt();
 
+        // 1부터 N까지 순열 배열 생성
         int[] arr = new int[n];
         for (int i = 0; i < n; i++) {
             arr[i] = i + 1;
         }
 
+        // 방문 값 생성
         boolean[] visited = new boolean[n];
 
         noDup(arr, visited, 0, n, m);
@@ -19,7 +21,12 @@ public class N_15650 {
 
     static void noDup(int[] arr, boolean[] visited, int start, int n, int m) {
         if (m == 0) {
-            print(arr, visited, n);
+            for (int i = 0; i < n; i++) {
+                if (visited[i]) {
+                    System.out.print((i+1) + " ");
+                }
+            }
+            System.out.println();
             return;
         }
 
@@ -28,14 +35,5 @@ public class N_15650 {
             noDup(arr, visited, i + 1, n, m - 1);
             visited[i] = false;
         }
-    }
-
-    static void print(int[] arr, boolean[] visited, int n) {
-        for (int i = 0; i < n; i++) {
-            if (visited[i]) {
-                System.out.print(arr[i] + " ");
-            }
-        }
-        System.out.println();
     }
 }
