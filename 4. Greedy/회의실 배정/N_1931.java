@@ -15,7 +15,7 @@ public class N_1931 {
             time[i][0] = Integer.parseInt(st.nextToken());
             time[i][1] = Integer.parseInt(st.nextToken());
         }
-        // 2차원 배열 정렬
+        // 종료시간 기준으로 2차원 배열 정렬
         Arrays.sort(time, (o1, o2) -> {
             if (o1[1] == o2[1]) {
                 return o1[0] - o2[0];
