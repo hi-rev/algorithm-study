@@ -1,33 +1,34 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class N_9012 {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int t = Integer.parseInt(br.readLine());
-        for (int i = 0; i < t; i++) {
-            String s = br.readLine();
-            String arr[] = s.split("");
-            int cnt = 0;
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt(); // test case
 
-            for (int j = 0; j < arr.length; j++) {
-                if (arr[j].equals("(")) {
-                    cnt++;
-                } else {
-                    if (cnt == 0) {
-                        cnt = 0;
-                    } else {
-                        cnt--;
-                    }
-                }
-            }
-            if (cnt == 0) {
-                System.out.println("YES");
+        for (int i = 0; i < t; i++) {
+            System.out.println(bracket(sc.next()));
+        }
+    }
+
+    public static String bracket(String s) {
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            if (c == '(') {
+                stack.push(c);
+            } else if (stack.empty()) {
+                return "NO";
             } else {
-                System.out.println("NO");
+                stack.pop();
             }
+        }
+        if (stack.empty()) {
+            return "YES";
+        } else {
+            return "NO";
         }
     }
 }
