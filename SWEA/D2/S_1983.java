@@ -18,7 +18,7 @@ public class S_1983 {
 
                 exam[j] = (a*0.35 + b*0.45 + c*0.2);
             }
-            System.out.println("#" + (i+1) + " " + score[solve(k) % 10]);
+            System.out.println("#" + (i+1) + " " + score[solve(k) / (n/10)]);
         }
     }
     static int solve(int k) {
