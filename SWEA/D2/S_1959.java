@@ -12,14 +12,12 @@ public class S_1959 {
             StringTokenizer st = new StringTokenizer(br.readLine());
             int n = Integer.parseInt(st.nextToken());
             int m = Integer.parseInt(st.nextToken());
-            // n과 m 중 더 큰 크기로 배열을 만듦
-            int max = Math.max(n, m);
-            int[] aArr = new int[max];
-            int[] bArr = new int[max];
+
+            int[] aArr = new int[n];
+            int[] bArr = new int[m];
 
             String[] aStrArr = br.readLine().split(" ");
             String[] bStrArr = br.readLine().split(" ");
-
 
             for (int j = 0; j < aStrArr.length; j++) {
                 aArr[j] = Integer.parseInt(aStrArr[j]);
@@ -28,41 +26,33 @@ public class S_1959 {
                 bArr[j] = Integer.parseInt(bStrArr[j]);
             }
 
+            // aArr가 작은쪽 bArr가 큰쪽
+            if (aArr.length > bArr.length) {
+                int[] temp = aArr;
+                aArr = bArr;
+                bArr = temp;
+            }
+
             System.out.print("#" + (i+1) + " ");
             int start = 0;
             int maxNum = 0;
-            if (m == max) { // m이 더 큰수라면?
-                for (int j = 0; j <= m - n; j++) {
-                    int[] init = aArr;
-                    int idx = 0;
-                    int res = 0;
-                    for (int k = start; k < start + n; k++) {
-                        res += init[idx] * bArr[k];
-                        idx++;
-                    }
-                    if (res > maxNum) {
-                        maxNum = res;
-                    }
-                    start++;
-                }
-                System.out.println(maxNum);
+            int max = Math.max(n, m);
+            int min = Math.min(n, m);
 
-            } else { // n이 더 큰수라면?
-                for (int j = 0; j < n - m; j++) {
-                    int[] init = bArr;
-                    int idx = 0;
-                    int res = 0;
-                    for (int k = start; k < start + m; k++) {
-                        res += init[idx] * aArr[k];
-                        idx++;
-                    }
-                    if (res > maxNum) {
-                        maxNum = res;
-                    }
-                    start++;
+            for (int j = 0; j <= max - min; j++) {
+                int[] init = aArr;
+                int idx = 0;
+                int res = 0;
+                for (int k = start; k < start + min; k++) {
+                    res += init[idx] * bArr[k];
+                    idx++;
                 }
-                System.out.println(maxNum);
+                if (res > maxNum) {
+                    maxNum = res;
+                }
+                start++;
             }
+            System.out.println(maxNum);
         }
     }
 }
